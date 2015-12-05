@@ -31,7 +31,7 @@ extern uint16_t       	os_inw(uint16_t port);
 extern void           	os_outd(uint16_t port, uint32_t data);
 extern uint32_t       	os_ind(uint16_t port);
 //Pic.h 
-extern void 	        pic_EOI(uint8_t irq);
+extern void 	        pic_eoi(uint8_t irq);
 extern uint16_t       	pic_irr(void);
 extern uint16_t       	pic_isr(void);
 

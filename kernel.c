@@ -1,17 +1,19 @@
 #include "include/Sys.h"
 
-int main(void){ //idk I did int argc, char* argv[], must been high
+int main(void){
 
-	//init_gdt();
 	init_idt();
-	init_pic();
 	
-	os_sti();
+	*(volatile char*)0xB8000 = 0x43;
+	
+	
+	init_pic();
 	
 	install_keyboard();
 	
-	//os_cli();
-	//os_halt();
+	os_sti();
+	
+	
 	
 	/////////////////////////////
 	//init_pci();

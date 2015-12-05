@@ -9,12 +9,12 @@ static void pic_remap(uint8_t offset, uint8_t offset2);
 
 void init_pic(void){
 	pic_remap(0x20, 0x28);
-	os_outb(PIC1_DATA, ~2);
+	os_outb(PIC1_DATA, ~3);
 	os_outb(PIC2_DATA, 0xFF);
 	return;
 }
 
-void pic_EOI(uint8_t irq){
+void pic_eoi(uint8_t irq){
 	if (irq > 7)
 		os_outb(PIC2_COMMAND, PIC_EOI);
 	os_outb(PIC1_COMMAND, PIC_EOI);
@@ -42,11 +42,19 @@ static void pic_remap(uint8_t offset, uint8_t offset2){
 }
 
 uint16_t pic_irr(void){
-	os_outb(PIC1_COMMAND, 0x09);
+	os_outb(PIC1_COMMAND, PIC_IRR);
 	os_io_wait();
-	os_outb(PIC2_COMMAND, 0x09);
+	os_outb(PIC2_COMMAND, PIC_IRR);
 	os_io_wait();
 	
 	return ((os_inb(PIC2_DATA) << 8) | os_inb(PIC1_DATA));
 }
 
+uint16_t pic_isr(void){
+	os_outb(PIC1_COMMAND, PIC_ISR);
+	os_io_wait();
+	os_outb(PIC2_COMMAND, PIC_ISR);
+	os_io_wait();
+	
+	return ((os_inb(PIC2_DATA) << 8) | os_inb(PIC1_DATA));
+}

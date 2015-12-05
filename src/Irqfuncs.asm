@@ -17,81 +17,97 @@ section .text
 	global irq15
 	
 irq0:
+	cli
 	push word 0
 	push word 32
 	
 	jmp irq_main
 irq1:
+	cli
 	push word 0
 	push word 33
 	
 	jmp irq_main
 irq2:
+	cli
 	push word 0
 	push word 34
 	
 	jmp irq_main
 irq3:
+	cli
 	push word 0
 	push word 35
 	
 	jmp irq_main
 irq4:
+	cli
 	push word 0
 	push word 36
 	
 	jmp irq_main
 irq5:
+	cli
 	push word 0
 	push word 37
 	
 	jmp irq_main
 irq6:
+	cli
 	push word 0
 	push word 38
 	
 	jmp irq_main
 irq7:
+	cli
 	push word 0
 	push word 39
 	
 	jmp irq_main
 irq8:
+	cli
 	push word 0
 	push word 40
 	
 	jmp irq_main
 irq9:
+	cli
 	push word 0
 	push word 41
 	
 	jmp irq_main
 irq10:
+	cli
 	push word 0
 	push word 42
 	
 	jmp irq_main
 irq11:
+	cli
 	push word 0
 	push word 43
 	
 	jmp irq_main
 irq12:
+	cli
 	push word 0
 	push word 44
 	
 	jmp irq_main
 irq13:
+	cli
 	push word 0
 	push word 45
 	
 	jmp irq_main
 irq14:
+	cli
 	push word 0
 	push word 46
 	
 	jmp irq_main
 irq15:
+	cli
 	push word 0
 	push word 47
 	
@@ -125,4 +141,6 @@ irq_main:
 	
 	popad
 	add esp, 4
+	
+	sti
 	iret

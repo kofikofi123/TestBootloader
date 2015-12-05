@@ -10,8 +10,6 @@ void install_keyboard(void){
 
 
 void keyboard_event(void){
-	os_cli();
-	os_halt();
 	return;
 }
 

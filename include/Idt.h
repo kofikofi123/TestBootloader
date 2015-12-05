@@ -8,7 +8,9 @@ struct IDT_pointer {
   uint16_t size;
   uint32_t offset;
 }__attribute__((packed));
-
+//0x001006E0
+//E0 06 08 00 00 8E 01 00
+//0x1006E0
 struct IDT_descriptor {
   uint16_t offset_low;
   uint16_t selector;
@@ -24,15 +26,20 @@ struct IDT_descriptor {
 //push ERROR_CODE
 //push VENDOR_CODE
 //pushad
-//latr
+//push ds 
+//push es 
+//push gs
+//push fs
+//push ss
+//latr~~
 //popad
-//add esp, 
+//add esp, 4 
+//iret
 struct Interrupt_parameters {
-	uint16_t ss, gs, fs, es, ds;
+	uint16_t ss, fs, g, es, ds;
 	uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
 	uint16_t vendor_code, error_code;
 	uint32_t eip;
-	uint16_t cs;
 	uint32_t eflags;
 }__attribute__((packed));
 
