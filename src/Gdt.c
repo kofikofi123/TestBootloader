@@ -26,7 +26,7 @@ static void encode_gdt(uint8_t index, uint32_t base, uint32_t limit, uint8_t acc
 	gdtd[index].base_low = (base & 0xFFFF);
 	gdtd[index].base_middle = ((base >> 16) & 0xFF);
 	gdtd[index].access = access;
-	gdtd[index].flags = ((flag & 0xF0) | ((limit >> 16) & 0xFF));
+	gdtd[index].flags = (flag | ((limit >> 16) & 0xFF));
 	gdtd[index].base_high = ((base >> 24) & 0xFF);
 	
 	return;

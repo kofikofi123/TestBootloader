@@ -30,10 +30,12 @@ extern void           	os_outw(uint16_t port, uint16_t data);
 extern uint16_t       	os_inw(uint16_t port);
 extern void           	os_outd(uint16_t port, uint32_t data);
 extern uint32_t       	os_ind(uint16_t port);
+
 //Pic.h 
 extern void 	        pic_eoi(uint8_t irq);
 extern uint16_t       	pic_irr(void);
 extern uint16_t       	pic_isr(void);
+extern void 			mask_irq(uint8_t irq, uint8_t value);
 
 //Other.h
 extern void   	      	flush_idt(void);

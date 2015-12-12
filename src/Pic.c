@@ -9,8 +9,19 @@ static void pic_remap(uint8_t offset, uint8_t offset2);
 
 void init_pic(void){
 	pic_remap(0x20, 0x28);
-	os_outb(PIC1_DATA, ~3);
+	os_outb(PIC1_DATA, ~(0b00000011));
 	os_outb(PIC2_DATA, 0xFF);
+	return;
+}
+
+void mask_irq(uint8_t irq, uint8_t value){
+	uint8_t pic = PIC1_DATA;
+	
+	if (irq > 7){
+		pic = PIC2_DATA;
+	}
+	
+	os_outb(pic, value);
 	return;
 }
 

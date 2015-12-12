@@ -48,15 +48,28 @@ void init_idt(void){
   encode_idt(29, (unsigned)isr29, 0x08, 0x8E);
   encode_idt(30, (unsigned)isr30, 0x08, 0x8E);
   encode_idt(31, (unsigned)isr31, 0x08, 0x8E);
-//  encode_idt(32, (unsigned)irq0, 0x08, 0x8E);
-  encode_idt(33, (unsigned)irq1, 0x08, 0x8E);
-  //encode_idt(34, (unsigned)irq2, 0x08, 0x8E);
-  //encode_idt(35, (unsigned)irq3, 0x08, 0x8E);
+  encode_idt(32, (unsigned)irq0, 0x08, 0x8E);
+  /*encode_idt(33, (unsigned)irq1, 0x08, 0x8E);
+  encode_idt(34, (unsigned)irq2, 0x08, 0x8E);
+  encode_idt(35, (unsigned)irq3, 0x08, 0x8E);
+  encode_idt(36, (unsigned)irq4, 0x08, 0x8E);
+  encode_idt(37, (unsigned)irq5, 0x08, 0x8E);
+  encode_idt(38, (unsigned)irq6, 0x08, 0x8E);
+  encode_idt(39, (unsigned)irq7, 0x08, 0x8E);
+  encode_idt(40, (unsigned)irq8, 0x08, 0x8E);
+  encode_idt(41, (unsigned)irq9, 0x08, 0x8E);
+  encode_idt(42, (unsigned)irq10, 0x08, 0x8E);
+  encode_idt(43, (unsigned)irq11, 0x08, 0x8E);
+  encode_idt(44, (unsigned)irq12, 0x08, 0x8E);
+  encode_idt(45, (unsigned)irq13, 0x08, 0x8E);
+  encode_idt(46, (unsigned)irq14, 0x08, 0x8E);
+  encode_idt(47, (unsigned)irq15, 0x08, 0x8E);*/
+
   
   idtp.size = (sizeof(idtd) - 1);
   idtp.offset = (unsigned)&idtd[0];
   
-  __asm__("lidt [idtp]");
+  __asm__ __volatile__ ("lidt [idtp]" : : : "memory");
   return;
 }
 

@@ -13,6 +13,7 @@
 
 void init_pic(void);
 void pic_eoi(uint8_t irq);
+void mask_irq(uint8_t irq, uint8_t value);
 uint16_t pic_irr(void);
 uint16_t pic_isr(void);
 
