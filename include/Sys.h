@@ -11,7 +11,7 @@
 
 #include "Keyboard.h"
 
-#define KERNEL_VERSION "0.2.1" //whops
+#define KERNEL_VERSION "0.2.25"
 #define KERNEL_VENDOR "STICKOS"  
 
 //Gdt.h
@@ -49,5 +49,13 @@ extern void 	        keyboard_event(void);
 //Pci.h
 extern void             init_pci(uint16_t si);
 extern void             getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
+
+//Terminal.h 
+extern void 			init_textmode(void);
+extern void 			clear_screen(void);
+extern void 			print_char(const char character);
+extern void 			print_string(const char* string);
+extern void 			print_number(uint32_t number);
+
 //extern enum DeviceType  getDeviceType(uint8_t bus, uint8_t device);
 #endif

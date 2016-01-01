@@ -33,7 +33,7 @@
 00000000000i[      ]   SB16 support: yes
 00000000000i[      ]   USB support: yes
 00000000000i[      ]   VGA extension support: vbe cirrus voodoo
-00000000000i[MEM0  ] allocated memory at 09787020. after alignment, vector=09788000
+00000000000i[MEM0  ] allocated memory at 09C50020. after alignment, vector=09C51000
 00000000000i[MEM0  ] 32.00MB
 00000000000i[MEM0  ] mem block size = 0x00100000, blocks=32
 00000000000p[MEM0  ] >>PANIC<< ROM: couldn't open ROM image file 'BIOS-bochs-latest'.
@@ -44,7 +44,7 @@
 00000000000i[DEV   ] PIIX3 PCI-to-ISA bridge present at device 1, function 0
 00000000000i[PLUGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS  ] Using local time for initial clock
-00000000000i[CMOS  ] Setting initial clock to: Sat Dec 12 12:49:47 2015 (time0=1449942587)
+00000000000i[CMOS  ] Setting initial clock to: Tue Dec 22 20:32:19 2015 (time0=1450834339)
 00000000000i[PLUGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA   ] channel 4 used by cascade
 00000000000i[PLUGIN] init_dev of 'pic' plugin device by virtual method
@@ -52,12 +52,13 @@
 00000000000i[PLUGIN] init_dev of 'vga' plugin device by virtual method
 00000000000i[MEM0  ] Register memory access handlers: 0x0000000a0000 - 0x0000000bffff
 00000000000i[VGA   ] interval=100000
-00000000000i[MEM0  ] Register memory access handlers: 0x0000e0000000 - 0x0000e0ffffff
 00000000000i[BXVGA ] VBE Bochs Display Extension Enabled
+00000000000i[DEV   ] PCI slot #1 used by plugin 'pcivga'
+00000000000i[DEV   ] Experimental PCI VGA present at device 2, function 0
+00000000000p[DEV   ] >>PANIC<< couldn't open PCI ROM image file 'VGABIOS-elpin-2.40'.
 00000000000i[WINGUI] Desktop Window dimensions: 1366 x 768
 00000000000i[WINGUI] Number of Mouse Buttons = 5
 00000000000i[WINGUI] IME disabled
-00000000000p[MEM0  ] >>PANIC<< ROM: couldn't open ROM image file 'VGABIOS-elpin-2.40'.
 00000000000i[PLUGIN] init_dev of 'floppy' plugin device by virtual method
 00000000000i[DMA   ] channel 2 used by Floppy Drive
 00000000000i[PLUGIN] init_dev of 'acpi' plugin device by virtual method
@@ -72,8 +73,8 @@
 00000000000i[HD    ] CD on ata0-0: 'C:\OS\offical\image\offical.iso'
 00000000000i[CD1   ] load cdrom with path='C:\OS\offical\image\offical.iso'
 00000000000i[CD1   ] Opening image file as a cd
-00000000000e[CD1   ] open cd failed for C:\OS\offical\image\offical.iso: No such file or directory
-00000000000i[HD    ] Could not locate CD-ROM, continuing with media not present
+00000000000i[HD    ] Media present in CD-ROM drive
+00000000000i[HD    ] Capacity is 559 sectors (1.09 MB)
 00000000000i[HD    ] Using boot sequence cdrom, none, none
 00000000000i[HD    ] Floppy boot signature check is enabled
 00000000000i[PLUGIN] init_dev of 'pci_ide' plugin device by virtual method
@@ -91,6 +92,7 @@
 00000000000i[PLUGIN] init_dev of 'usb_uhci' plugin device by virtual method
 00000000000i[DEV   ] Experimental USB UHCI present at device 1, function 2
 00000000000i[UHCI  ] USB UHCI initialized
+00000000000p[DEV   ] >>PANIC<< Unknown plugin 'ne2k' at PCI slot #2
 00000000000i[PLUGIN] register state of 'pci' plugin device by virtual method
 00000000000i[PLUGIN] register state of 'pci2isa' plugin device by virtual method
 00000000000i[PLUGIN] register state of 'cmos' plugin device by virtual method
@@ -279,3 +281,67 @@
 00012041581i[CPU0  ] math_abort: MSDOS compatibility FPU exception
 00012050689e[DEV   ] read from port 0x0000 with len 2 returns 0xffff
 00012051013i[CPU0  ] math_abort: MSDOS compatibility FPU exception
+00699012000i[WINGUI] system RESET callback
+00699012000i[SYS   ] bx_pc_system_c::Reset(HARDWARE) called
+00699012000i[CPU0  ] cpu hardware reset
+00699012000i[APIC0 ] allocate APIC id=0 (MMIO enabled) to 0x0000fee00000
+00699012000i[CPU0  ] CPUID[0x00000000]: 00000005 756e6547 6c65746e 49656e69
+00699012000i[CPU0  ] CPUID[0x00000001]: 00000633 00010800 00002028 1fcbfbff
+00699012000i[CPU0  ] CPUID[0x00000002]: 00410601 00000000 00000000 00000000
+00699012000i[CPU0  ] CPUID[0x00000003]: 00000000 00000000 00000000 00000000
+00699012000i[CPU0  ] CPUID[0x00000004]: 00000000 00000000 00000000 00000000
+00699012000i[CPU0  ] CPUID[0x00000005]: 00000040 00000040 00000003 00000020
+00699012000i[PLUGIN] reset of 'pci' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'pci2isa' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'cmos' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'dma' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'pic' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'pit' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'vga' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'floppy' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'acpi' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'ioapic' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'keyboard' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'harddrv' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'pci_ide' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'unmapped' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'biosdev' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'speaker' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'extfpuirq' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'parallel' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'serial' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'gameport' plugin device by virtual method
+00699012000i[PLUGIN] reset of 'usb_uhci' plugin device by virtual method
+00699012602e[DEV   ] read from port 0x0000 with len 2 returns 0xffff
+00718816000i[WINGUI] system RESET callback
+00718816000i[SYS   ] bx_pc_system_c::Reset(HARDWARE) called
+00718816000i[CPU0  ] cpu hardware reset
+00718816000i[APIC0 ] allocate APIC id=0 (MMIO enabled) to 0x0000fee00000
+00718816000i[CPU0  ] CPUID[0x00000000]: 00000005 756e6547 6c65746e 49656e69
+00718816000i[CPU0  ] CPUID[0x00000001]: 00000633 00010800 00002028 1fcbfbff
+00718816000i[CPU0  ] CPUID[0x00000002]: 00410601 00000000 00000000 00000000
+00718816000i[CPU0  ] CPUID[0x00000003]: 00000000 00000000 00000000 00000000
+00718816000i[CPU0  ] CPUID[0x00000004]: 00000000 00000000 00000000 00000000
+00718816000i[CPU0  ] CPUID[0x00000005]: 00000040 00000040 00000003 00000020
+00718816000i[PLUGIN] reset of 'pci' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'pci2isa' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'cmos' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'dma' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'pic' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'pit' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'vga' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'floppy' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'acpi' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'ioapic' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'keyboard' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'harddrv' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'pci_ide' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'unmapped' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'biosdev' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'speaker' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'extfpuirq' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'parallel' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'serial' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'gameport' plugin device by virtual method
+00718816000i[PLUGIN] reset of 'usb_uhci' plugin device by virtual method
+00718816598e[DEV   ] read from port 0x0000 with len 2 returns 0xffff

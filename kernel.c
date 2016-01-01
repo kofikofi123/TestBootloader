@@ -1,16 +1,15 @@
 #include "include/Sys.h"
 
-int main(void){
-
+int kernel_main(void){
 	init_gdt();
 	init_idt();
 	init_pic();
 	
 	install_keyboard();
+	//install_timer();
 	
-	os_sti();
-	/////////////////////////////
-	//init_pci();
+	//os_sti();
 	
 	while (1){}
 }
+

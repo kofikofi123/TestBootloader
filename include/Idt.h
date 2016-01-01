@@ -44,8 +44,6 @@ struct Interrupt_parameters {
 }__attribute__((packed));
 
 
-extern irq_handler_t irqs[15];
-
 void init_idt(void);
 
 #endif

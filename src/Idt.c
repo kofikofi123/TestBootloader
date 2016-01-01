@@ -9,7 +9,8 @@
 
 struct IDT_pointer idtp;
 struct IDT_descriptor idtd[256];
-irq_handler_t irqs[15];
+extern irq_handler_t irqs[15];
+
 
 extern void isr_handler(struct Interrupt_parameters iparam);
 extern void irq_handler(struct Interrupt_parameters iparam);
@@ -49,7 +50,7 @@ void init_idt(void){
   encode_idt(30, (unsigned)isr30, 0x08, 0x8E);
   encode_idt(31, (unsigned)isr31, 0x08, 0x8E);
   encode_idt(32, (unsigned)irq0, 0x08, 0x8E);
-  /*encode_idt(33, (unsigned)irq1, 0x08, 0x8E);
+  encode_idt(33, (unsigned)irq1, 0x08, 0x8E);
   encode_idt(34, (unsigned)irq2, 0x08, 0x8E);
   encode_idt(35, (unsigned)irq3, 0x08, 0x8E);
   encode_idt(36, (unsigned)irq4, 0x08, 0x8E);
@@ -63,7 +64,7 @@ void init_idt(void){
   encode_idt(44, (unsigned)irq12, 0x08, 0x8E);
   encode_idt(45, (unsigned)irq13, 0x08, 0x8E);
   encode_idt(46, (unsigned)irq14, 0x08, 0x8E);
-  encode_idt(47, (unsigned)irq15, 0x08, 0x8E);*/
+  encode_idt(47, (unsigned)irq15, 0x08, 0x8E);
 
   
   idtp.size = (sizeof(idtd) - 1);
