@@ -17,7 +17,7 @@ int8_t map_memory(uint8_t index){//haven't actually tested this
 	reg = os_inb(0x3CE);
 	os_io_wait();
 	reg = reg | (index << 2);
-	os_outb(reg);
+	os_outb(0x3CE, reg);
 	
 	
 	if ((os_inb(0x3CE) & 12) != 2){
