@@ -5,7 +5,8 @@ struct Position {
 	uint8_t x, y;
 }__attribute__((packed));
 
-v //no negative for now
+void init_textmode(void);
+//no negative for now
 //possible functions
 //void set_cursor(struct Position* pos);
 //void get_cursor(struct Position* pos);
