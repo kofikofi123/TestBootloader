@@ -26,6 +26,7 @@ int8_t map_memory(uint8_t index){//haven't actually tested this
 	return 1;
 }
 
+
 void load_reg1(void){
 	
 }
