@@ -9,7 +9,7 @@
 
 struct IDT_pointer idtp;
 struct IDT_descriptor idtd[256];
-extern irq_handler_t irqs[15];
+irq_handler_t irqs[15];
 
 
 extern void isr_handler(struct Interrupt_parameters iparam);
