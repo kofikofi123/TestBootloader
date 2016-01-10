@@ -25,7 +25,7 @@ main: boot sources
 	@echo Finished main rule
 
 boot:
-	@$(NASM) -f bin bootstrap.asm -o $(imagefolder)/boot.img
+	@$(NASM) -f bin bootstrap.asm -o $(binfolder)/boot.img
 	@$(NASM) -f bin boot2.asm -o $(binfolder)/boot2.bin 
 	@echo Finished boot rule
 	
