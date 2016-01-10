@@ -8,7 +8,7 @@ int kernel_main(void){
 	install_keyboard();
 	//install_timer();
 	
-	//os_sti();
+	os_sti();
 	
 	while (1){}
 }
