@@ -6,7 +6,6 @@ imagefolder=image/
 buildfolder=build/
 libfolder=lib/
 asmfiles=$(Sources)/*.asm
-qemu="C:/Program Files (x86)/QemuManager/media"
 
 CC=i686-elf-gcc
 LD=i686-elf-ld
@@ -43,7 +42,8 @@ sources:
 clean:
 	@rm *.o
 	@rm $(buildfolder)/*.o
-	@rm $(binfolder)/*.bin
+	@rm $(binfolder)/*.*
+	@rm $(imagefolder)/offical.iso
 	@echo Finished clean rule
 	
 qemu_moveimage:
