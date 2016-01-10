@@ -1,1 +1,1 @@
-mkisofs -b $NOSP/image/boot.img -boot-load-size 4 -no-emul-boot -o $NOSP/image/offical.iso $NOSP/bin
+genisoimage -b boot.img -no-emul-boot -boot-load-size 4 -o offical.iso image/
