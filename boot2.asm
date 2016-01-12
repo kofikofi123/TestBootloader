@@ -5,22 +5,51 @@ ORG 0x7E00
 jmp Main
 
 
-;print_string:
-;	cld
-;	push ax
-;._read:
-;	lodsb
-;	or al, al
-;	jz ._done
-;	mov ah, 0x0E
-;	int 0x10
-;	jmp short ._read
-;._done:
-;	pop ax
-;	ret
+print_string:
+	cld
+	push ax
+._read:
+	lodsb
+	or al, al
+	jz ._done
+	mov ah, 0x0E
+	int 0x10
+	jmp short ._read
+._done:
+	pop ax
+	ret
 
-
-
+detect_memory:
+    push ebx
+    push ecx 
+    push edx 
+    push di
+    lea di, [mdv]
+    xor ebx, ebx 
+.read:
+    mov eax, 0x0000E820 
+    mov edx, 0x534D4150
+    mov ecx, 24 
+    int 0x15 
+    jc short .error
+    test ebx, ebx 
+    jz short .error 
+    
+    mov [di + 24], cl; I think
+    add di, 24 ;I think
+.error:
+    lea si, [could_not_detect_memory_error]
+    call print_string
+    mov eax, 1 
+    ret 
+.finished:
+    xor eax, eax 
+    pop di 
+    pop edx 
+    pop ecx
+    pop ebx 
+    ret 
+    
 load_gdt:
 	lgdt [gdt] 
 	ret 
@@ -91,8 +120,8 @@ gdt:
 	dw gdt_end - gdt_start - 1 
 	dd gdt_start
 	
-os_information:
-	db 0 ;flags
+;os_information:
+;	db 0 ;flags
 	
 Main:	
 	xor ax, ax
@@ -104,8 +133,11 @@ Main:
 	mov ss, ax 
 	mov sp, 0x7DFF
 	
-check_for_pci:
-	lea si, [os_information]
+	call detect_memory 
+	cmp eax, 1 
+	je short replop
+;check_for_pci:
+	;lea si, [os_information]
 	
 	;or [si], 1 ;for now
 	
@@ -118,12 +150,16 @@ check_a20_loop:
 	call is_a20_enabled
 	cmp ax, 1
 	je load_the_gdt
+	lea si, [error_loading_gdt_message]
+	call print_string 
 replop:
+    cli 
+    hlt
 	jmp replop
 load_the_gdt:
 	call load_gdt 
 
-	
+	lea si, [mdv]
 	
 	cli
 	mov eax, cr0 
@@ -132,8 +168,13 @@ load_the_gdt:
 	
 	jmp 0x08:flush
 
+error_loading_gdt_message db "Error: System doesn't support a20 ", 0
+could_not_detect_memory_error db "Error: Couldn't detect memory", 0
+;mem_magic_number dw 0
+section .bss
+mdv: resb 1536 ;maybe
 BITS 32
-	
+section .text
 flush:
 	mov ax, 0x10 
 	mov ds, ax 

@@ -7,11 +7,12 @@
 #include "Pic.h"
 #include "Pci.h"
 #include "ACOREFuncs.h"
+#include "Pit.h"
 #include "Other.h"
 
 #include "Keyboard.h"
 
-#define KERNEL_VERSION "0.2.25"
+#define KERNEL_VERSION "0.2.3"
 #define KERNEL_VENDOR "STICKOS"  
 
 //Gdt.h
@@ -50,12 +51,19 @@ extern void 	        keyboard_event(void);
 extern void             init_pci(uint16_t si);
 extern void             getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
 
-//Terminal.h 
+/*Terminal.h - Decrepit 
 extern void 			init_textmode(void);
 extern void 			clear_screen(void);
 extern void 			print_char(const char character);
 extern void 			print_string(const char* string);
 extern void 			print_number(uint32_t number);
+*/
+//Pit.h
+extern void             install_pit(void);
+extern void             pit_event(void);
+extern void             setReloadRegister(uint16_t reload);
+extern uint16_t         getReloadRegister(void);
+extern void             reloadRegister(void);
 
 //extern enum DeviceType  getDeviceType(uint8_t bus, uint8_t device);
 #endif
