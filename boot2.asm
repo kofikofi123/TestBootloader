@@ -40,11 +40,11 @@ detect_memory:
 .error1:
     lea si, [could_not_detect_memory_error] 
     call print_string 
+    lea si, [test1]
+    call print_string
     mov eax, 1
 .error:
     lea si, [could_not_detect_memory_error]
-    call print_string
-    lea si, [test1]
     call print_string
     mov eax, 1 
     ret 
