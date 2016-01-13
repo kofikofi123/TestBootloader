@@ -1,9 +1,6 @@
 #include "include/Sys.h"
 
 int kernel_main(void){
-    struct registers_t registers;
-    
-    get_registers(&registers);
     
 	init_gdt();
 	init_idt();
@@ -13,6 +10,11 @@ int kernel_main(void){
 	//install_timer();
 	
 	os_sti();
+	
+	
+    struct registers_t registers;
+    
+    get_registers(&registers);
 	
 	while (1){}
 }
