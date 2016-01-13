@@ -37,11 +37,10 @@ detect_memory:
     
     mov [di + 24], cl; I think
     add di, 24 ;I think
+    jmp .finished
 .error1:
     lea si, [could_not_detect_memory_error] 
     call print_string 
-    lea si, [test1]
-    call print_string
     mov eax, 1
 .error:
     lea si, [could_not_detect_memory_error]
