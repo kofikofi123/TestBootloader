@@ -10,8 +10,17 @@ get_registers:
     lea ebx, [esp]
     mov ebp, esp 
     
-    lea esp, [ebp + 8] 
-    push eax
+    lea esp, [ebp + 48]
+    pushfd 
+    pushad 
+    push ds 
+    push es 
+    push gs 
+    push fs 
+    push ss 
+    push cs 
+    
+    
     
     
 .done:

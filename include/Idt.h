@@ -35,8 +35,9 @@ struct IDT_descriptor {
 //popad
 //add esp, 4 
 //iret
+//( edi, esi, ebp, esp, ebx, edx, ecx, eax, vendor_code, error_code, eip, eflags)
 struct Interrupt_parameters {
-	uint16_t ss, fs, g, es, ds;
+	uint16_t ss, fs, gs, es, ds;
 	uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
 	uint16_t vendor_code, error_code;
 	uint32_t eip;

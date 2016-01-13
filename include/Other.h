@@ -2,9 +2,11 @@
 #define _OTHER_H
 
 //declarations - structures
+//(eflags, eax, ecx, edx, ebx, esp, ebp, esi, edi, ds, es, gs, fs, ss)
+//(cs, ss, fs, gs, es, ds, edi, esi, ebp, esp, ebx, edx, ecx, eax, eflags);
 struct registers_t {
-    uint32_t eax, ebx, ecx, edx, esi, edi, esp;
-    uint16_t ds, es, gs, bs, fs;
+    uint16_t cs, ss, fs, gs, es, ds;
+    uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
     uint32_t eflags;
 }__attribute__((packed));
 
