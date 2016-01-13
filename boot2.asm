@@ -31,14 +31,20 @@ detect_memory:
     mov edx, 0x534D4150
     mov ecx, 24 
     int 0x15 
-    jc short .error
+    jc short .error1
     test ebx, ebx 
     jz short .error 
     
     mov [di + 24], cl; I think
     add di, 24 ;I think
+.error1:
+    lea si, [could_not_detect_memory_error] 
+    call print_string 
+    mov eax, 1
 .error:
     lea si, [could_not_detect_memory_error]
+    call print_string
+    lea si, [test1]
     call print_string
     mov eax, 1 
     ret 
@@ -170,6 +176,7 @@ load_the_gdt:
 
 error_loading_gdt_message db "Error: System doesn't support a20 ", 0
 could_not_detect_memory_error db "Error: Couldn't get memory map", 0
+test1 db "test1", 0
 ;mem_magic_number dw 0
 section .bss
 mdv: resb 1536 ;maybe
