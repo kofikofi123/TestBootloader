@@ -1,17 +1,24 @@
 BITS 32
 section .text
-	global flush_idt
 	global flush_gdt
+	global get_registers
 	
-	
-	
-flush_idt:
-	extern idtp
-	
-	lidt [idtp]
-	
-	ret
 
+get_registers:
+    push esp
+    push ebp
+    lea ebx, [esp]
+    mov ebp, esp 
+    
+    lea esp, [ebp + 8] 
+    push eax
+    
+    
+.done:
+    mov esp, ebx 
+    pop ebp 
+    pop esp 
+    ret
 	
 flush_gdt:
 	push ebx

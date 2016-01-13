@@ -1,9 +1,9 @@
 #include "include/Sys.h"
 
 int kernel_main(void){
-    //si should have the adress the the memory struture
+    struct registers_t registers;
     
-    
+    get_registers(&registers);
     
 	init_gdt();
 	init_idt();

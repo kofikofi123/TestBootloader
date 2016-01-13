@@ -39,8 +39,9 @@ extern uint16_t       	pic_isr(void);
 extern void 			mask_irq(uint8_t irq, uint8_t value);
 
 //Other.h
-extern void   	      	flush_idt(void);
+//extern void   	      	flush_idt(void);
 extern void 	        flush_gdt(void);
+extern void             get_registers(struct registers_t*);
 
 
 //Keyoard.h 
