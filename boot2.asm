@@ -169,7 +169,7 @@ load_the_gdt:
 	jmp 0x08:flush
 
 error_loading_gdt_message db "Error: System doesn't support a20 ", 0
-could_not_detect_memory_error db "Error: Couldn't detect memory", 0
+could_not_detect_memory_error db "Error: Couldn't get memory map", 0
 ;mem_magic_number dw 0
 section .bss
 mdv: resb 1536 ;maybe
