@@ -7,7 +7,7 @@ section .text
 get_registers:
     push esp
     push ebp
-    lea ebx, [esp]
+    mov ebx, esp
     mov ebp, esp 
     
     lea esp, [ebp + 48]
