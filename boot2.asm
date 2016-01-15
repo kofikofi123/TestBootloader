@@ -31,17 +31,12 @@ detect_memory:
     mov edx, 0x534D4150
     mov ecx, 24 
     int 0x15 
-    jc short .error1
+    jc short .error
     test ebx, ebx 
-    jz short .error 
+    jz short .finished
     
-    mov [di + 24], cl; I think
     add di, 24 ;I think
     jmp .finished
-.error1:
-    lea si, [could_not_detect_memory_error] 
-    call print_string 
-    mov eax, 1
 .error:
     lea si, [could_not_detect_memory_error]
     call print_string
