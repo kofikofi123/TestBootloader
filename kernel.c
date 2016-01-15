@@ -16,8 +16,6 @@ int kernel_main(void){
     
     get_registers(&registers);*/
 	
-	while (1){
-	    os_halt();//test something
-	}
+	while (1){}
 }
 
