@@ -31,14 +31,12 @@ get_registers:
     push ss 
     push cs 
     
-    jmp .done 
+    jmp .done
 .esp_buffer: dw 0
 .ebp_buffer dw 0
 .done:
     mov esp, dword [.esp_buffer]
     mov ebp, dword [.ebp_buffer]
-.loop_test:
-    jmp .loop_test
     ret
 	
 flush_gdt:
