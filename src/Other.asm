@@ -5,8 +5,8 @@ section .text
 	
 
 get_registers:
-    mov [.ebp_buffer], ebp
-    mov [.esp_buffer], esp
+    ;mov [.ebp_buffer], ebp
+    ;mov [.esp_buffer], esp
     push ebp
      
     jmp short .done
