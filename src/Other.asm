@@ -40,6 +40,7 @@ get_registers:
     ret
 	
 flush_gdt:
+    jmp .done ;debugging
 	push ebx
 	extern gdtp
 	
