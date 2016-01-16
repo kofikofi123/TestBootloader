@@ -10,7 +10,6 @@ void install_keyboard(void){
 
 
 void keyboard_event(void){
-	*((int*)0xb8000)=0x07690748; //test lol
 	return;
 }
 
