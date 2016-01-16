@@ -14,6 +14,7 @@ get_registers:
     mov esp, [ebp + 8]
     mov ebp, [.ebp_buffer] 
     
+    add esp, 48
     pushfd 
     push eax 
     push ecx 
@@ -36,6 +37,8 @@ get_registers:
 .done:
     mov esp, dword [.esp_buffer]
     mov ebp, dword [.ebp_buffer]
+.loop_test:
+    jmp .loop_test
     ret
 	
 flush_gdt:
