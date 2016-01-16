@@ -35,8 +35,8 @@ get_registers:
 .esp_buffer: dw 0
 .ebp_buffer dw 0
 .done:
-    mov esp, dword [.esp_buffer]
-    mov ebp, dword [.ebp_buffer]
+    ;mov esp, dword [.esp_buffer]
+    ;mov ebp, dword [.ebp_buffer]
     ret
 	
 flush_gdt:
