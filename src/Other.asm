@@ -5,14 +5,24 @@ section .text
 	
 
 get_registers:
-    push esp
+    mov [.ebp_buffer], ebp
+    mov [.esp_buffer], esp
     push ebp
-    mov ebx, esp
-    mov ebp, esp 
+      
     
-    lea esp, [ebp + 48]
+    mov ebp, esp 
+    mov esp, [ebp + 8]
+    mov ebp, [.ebp_buffer] 
+    
     pushfd 
-    pushad 
+    push eax 
+    push ecx 
+    push edx 
+    push ebx 
+    push dword [.esp_buffer]
+    push dword [.ebp_buffer]
+    push esi 
+    push edi
     push ds 
     push es 
     push gs 
@@ -20,13 +30,12 @@ get_registers:
     push ss 
     push cs 
     
-    
-    
-    
+    jmp .done 
+.esp_buffer: dw 0
+.ebp_buffer dw 0
 .done:
     mov esp, ebx 
     pop ebp 
-    pop esp 
     ret
 	
 flush_gdt:
