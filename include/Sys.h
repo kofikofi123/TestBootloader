@@ -62,8 +62,8 @@ extern void 			print_number(uint32_t number);
 //Pit.h
 extern void             install_pit(void);
 extern void             pit_event(void);
-extern void             setReloadRegister(uint16_t reload);
-extern uint16_t         getReloadRegister(void);
+//extern void             setReloadRegister(uint16_t reload);
+//extern uint16_t         getReloadRegister(void);
 extern void             reloadRegister(void);
 
 //extern enum DeviceType  getDeviceType(uint8_t bus, uint8_t device);

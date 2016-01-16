@@ -5,11 +5,11 @@ section .text
 	
 
 get_registers:
-    jmp .done
     mov [.ebp_buffer], ebp
     mov [.esp_buffer], esp
     push ebp
-      
+     
+    jmp short .done
     
     mov ebp, esp 
     mov esp, [ebp + 8]
@@ -38,6 +38,7 @@ get_registers:
 .done:
     ;mov esp, dword [.esp_buffer]
     ;mov ebp, dword [.ebp_buffer]
+    pop ebp
     ret
 	
 flush_gdt:
