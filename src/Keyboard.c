@@ -12,7 +12,7 @@ void install_keyboard(void){
 
 void keyboard_event(void){
 	*test = 0x07690748; //test lol
-	test += sizeof(int);
+	test += 8;
 	return;
 }
 
