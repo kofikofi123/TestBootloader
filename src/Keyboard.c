@@ -10,7 +10,7 @@ void install_keyboard(void){
 
 void reset_cpu(){//test
     while((os_inb(0x64) & 0b00000010) != 0b00000010);
-    
+    os_io_wait();
     os_outb(0x64, 0xFE);
 }
 void keyboard_event(void){
