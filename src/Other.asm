@@ -5,6 +5,7 @@ section .text
 	
 
 get_registers:
+    jmp .done
     mov [.ebp_buffer], ebp
     mov [.esp_buffer], esp
     push ebp
@@ -40,7 +41,6 @@ get_registers:
     ret
 	
 flush_gdt:
-    jmp .done ;debugging
 	push ebx
 	extern gdtp
 	
