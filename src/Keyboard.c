@@ -8,9 +8,13 @@ void install_keyboard(void){
 	return;
 }
 
-
+void reset_cpu(){//test
+    while((os_inb(0x64) & 0b00000010) != 0b00000010);
+    
+    os_outb(0x64, 0xFE);
+}
 void keyboard_event(void){
-	*((int*)0xb8000)=0x07690748; //test lol
+    reset_cpu();
 	return;
 }
 
