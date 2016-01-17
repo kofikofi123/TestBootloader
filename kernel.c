@@ -14,7 +14,7 @@ int kernel_main(void){
 	
     struct registers_t registers;
     
-    get_registers(&registers);
+    //get_registers(&registers);
 	
 	while (1){
 	    os_halt();
