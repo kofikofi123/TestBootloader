@@ -12,7 +12,7 @@ int kernel_main(void){
 	os_sti();
 	
 	
-    struct registers_t registers;
+    //struct registers_t registers;
     
     //get_registers(&registers);
 	

@@ -5,15 +5,13 @@ section .text
 	
 
 get_registers:
-    ;mov [.ebp_buffer], ebp
-    ;mov [.esp_buffer], esp
-    push ebp
-     
-    jmp short .done
+    mov [get_registers_ebp_buffer], ebp
+    mov [get_registers_esp_buffer], esp
+    
     
     mov ebp, esp 
     mov esp, [ebp + 8]
-    mov ebp, [.ebp_buffer] 
+    mov ebp, [get_registers_ebp_buffer] 
     
     add esp, 48
     pushfd 
@@ -21,8 +19,8 @@ get_registers:
     push ecx 
     push edx 
     push ebx 
-    push dword [.esp_buffer]
-    push dword [.ebp_buffer]
+    push dword [get_registers_esp_buffer]
+    push dword [get_registers_ebp_buffer]
     push esi 
     push edi
     push ds 
@@ -33,12 +31,8 @@ get_registers:
     push cs 
     
     jmp .done
-.esp_buffer: dw 0
-.ebp_buffer dw 0
 .done:
-    ;mov esp, dword [.esp_buffer]
-    ;mov ebp, dword [.ebp_buffer]
-    pop ebp
+    mov esp, dword [get_registers_esp_buffer]
     ret
 	
 flush_gdt:
@@ -62,3 +56,8 @@ flush_gdt:
 .done:
 	pop ebx
 	ret
+	
+section .data
+    get_registers_ebp_buffer dd 0 
+    get_registers_esp_buffer dd 0 
+    

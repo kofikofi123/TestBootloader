@@ -5,6 +5,6 @@
 
 void install_pit(void);
 void pit_event(void);
-void reloadRegister(void);
+void reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
 
 #endif

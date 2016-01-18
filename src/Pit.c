@@ -11,8 +11,8 @@ void install_pit(void){
 	return;
 }
 
-void reloadRegister(void){
-    os_outb(0x43, FORMATWRITEOP(0, 0, 2, 0));
+void reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value){
+    os_outb(0x43, FORMATWRITEOP(channel, 0, mode, 0));
     os_io_wait();
     os_outb(0x40, reload_value & 0xFF);
     os_io_wait();
