@@ -3,11 +3,9 @@
 #include "../include/Pit.h"
 #include "../include/Irq.h"
 
-uint16_t reload_value;
-
 void install_pit(void){
 	install_irq(0, pit_event);
-	reload_value = 5;
+	//reloadRegister()
 	return;
 }
 
@@ -22,6 +20,8 @@ void reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value){
 
 
 void pit_event(void){
-	//pit event
+	//if (/**/){
+	    //reloadRegister(getChannel(), getMode(channel), getReloadValue(channel)) 
+	//}
 	return;
 }
