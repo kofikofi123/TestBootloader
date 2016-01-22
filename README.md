@@ -27,3 +27,8 @@ Recently added (from 4 month period)
 -Reading docs about the APIC timer, seems interesting<br/ >
 -The OS has been moved from windows development to ubuntu, well most<br/ >
 -Cross-compiler: (same as before) i686-elf<br/ >
+
+Have ideas? Please tell me :4<br/ >
+Anything to improve: Please tell me also<br/ >
+
+ChairForEver
