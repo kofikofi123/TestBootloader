@@ -11,6 +11,7 @@ Soon to come in boot2:
   
 Soon to come in bootloader:
   Clean up some of the useless code.
+  
 -------------------------------------------------------------------------------------------------------------------------
 
 NewStickOS 2.4
