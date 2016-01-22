@@ -14,7 +14,7 @@ Soon to come in bootloader:
   
 -------------------------------------------------------------------------------------------------------------------------
 
-#NewStickOS 2.4 (0.2.4)
+#NewStickOS 2.4 (0.2.4) 
 Thu, Jan 21, 2016
 
 Recently added (from 4 month period)
