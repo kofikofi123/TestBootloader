@@ -13,5 +13,8 @@ void      os_outw(uint16_t port, uint16_t data);
 uint16_t  os_inw(uint16_t port);
 void      os_outd(uint16_t port, uint32_t data);
 uint32_t  os_ind(uint16_t port);
+void      os_cpuid(void);
+//void    cpuid_detect(void);
+//void      cpuid()   
 
 #endif

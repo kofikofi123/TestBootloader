@@ -57,6 +57,14 @@ flush_gdt:
 	pop ebx
 	ret
 	
+push_flags:
+    pushf 
+    ret 
+
+push_flagsD:
+    pushfd 
+    ret 
+	
 section .data
     get_registers_ebp_buffer dd 0 
     get_registers_esp_buffer dd 0 

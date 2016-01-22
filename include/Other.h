@@ -15,5 +15,4 @@ struct registers_t {
 void flush_gdt(void);
 void get_registers(struct registers_t*);
 
-
 #endif

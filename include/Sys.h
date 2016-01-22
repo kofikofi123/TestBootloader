@@ -1,7 +1,10 @@
 #ifndef _SYS_H
 
+#define _SYS_H
+
 #include <stdint.h>
 
+//core
 #include "Idt.h"
 #include "Gdt.h"
 #include "Pic.h"
@@ -10,10 +13,15 @@
 #include "Pit.h"
 #include "Other.h"
 
+//core drivers
 #include "Keyboard.h"
 
-#define KERNEL_VERSION "0.2.3"
+//etc 
+#define KERNEL_VERSION "0.2.4"
 #define KERNEL_VENDOR "STICKOS"  
+#define KERNEL_AUTHORS "kofikofi123;Jonathan;Customailty"
+
+//Jonathan and Customailty helped me also 
 
 //Gdt.h
 extern void           	init_gdt(void);
@@ -31,22 +39,24 @@ extern void           	os_outw(uint16_t port, uint16_t data);
 extern uint16_t       	os_inw(uint16_t port);
 extern void           	os_outd(uint16_t port, uint32_t data);
 extern uint32_t       	os_ind(uint16_t port);
-
+extern void             os_cpuid(void);
 //Pic.h 
-extern void 	        pic_eoi(uint8_t irq);
+extern void 	          pic_eoi(uint8_t irq);
 extern uint16_t       	pic_irr(void);
 extern uint16_t       	pic_isr(void);
-extern void 			mask_irq(uint8_t irq, uint8_t value);
+extern void 			      mask_irq(uint8_t irq, uint8_t value);
 
 //Other.h
 //extern void   	      	flush_idt(void);
-extern void 	        flush_gdt(void);
+extern void 	          flush_gdt(void);
 extern void             get_registers(struct registers_t*);
+extern void             push_flags(void);
+extern void             push_flagsD(void);
 
 
 //Keyoard.h 
 extern void    	      	install_keyboard(void);
-extern void 	        keyboard_event(void);
+extern void 	          keyboard_event(void);
 
 //Pci.h
 extern void             init_pci(uint16_t si);
