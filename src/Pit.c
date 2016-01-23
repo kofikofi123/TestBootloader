@@ -4,8 +4,8 @@
 #include "../include/Irq.h"
 
 void install_pit(void){
+  //reloadRegister(0, 0, 0xFFFF);
 	install_irq(0, pit_event);
-	//reloadRegister()
 	return;
 }
 

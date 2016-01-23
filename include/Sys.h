@@ -18,61 +18,62 @@
 
 //etc 
 #define KERNEL_VERSION "0.2.4"
+#define KERNEL_BUILDNUMBER 1 // decided to add a build number
 #define KERNEL_VENDOR "STICKOS"  
 #define KERNEL_AUTHORS "kofikofi123;Jonathan;Customailty"
 
 //Jonathan and Customailty helped me also 
 
 //Gdt.h
-extern void           	init_gdt(void);
+void           	init_gdt(void);
 
 //Idt.h
-extern void           	init_idt(void);
+void           	init_idt(void);
 
 //ACOREFuncs.h
-extern void           	os_cli(void);
-extern void           	os_sti(void);
-extern void           	os_halt(void);
-extern void           	os_outb(uint16_t port, uint8_t data);
-extern uint8_t        	os_inb(uint16_t port);
-extern void           	os_outw(uint16_t port, uint16_t data);
-extern uint16_t       	os_inw(uint16_t port);
-extern void           	os_outd(uint16_t port, uint32_t data);
-extern uint32_t       	os_ind(uint16_t port);
-extern void             os_cpuid(void);
-//Pic.h 
-extern void 	          pic_eoi(uint8_t irq);
-extern uint16_t       	pic_irr(void);
-extern uint16_t       	pic_isr(void);
-extern void 			      mask_irq(uint8_t irq, uint8_t value);
+void           	os_cli(void);
+void           	os_sti(void);
+void           	os_halt(void);
+void           	os_outb(uint16_t port, uint8_t data);
+uint8_t        	os_inb(uint16_t port);
+void           	os_outw(uint16_t port, uint16_t data);
+uint16_t       	os_inw(uint16_t port);
+void           	os_outd(uint16_t port, uint32_t data);
+uint32_t       	os_ind(uint16_t port);
+void            os_cpuid(void);
+uint8_t         os_cpuid_supported(void);
+//Pic.h   
+void 	          pic_eoi(uint8_t irq);
+uint16_t       	pic_irr(void);
+uint16_t       	pic_isr(void);
+void 			      mask_irq(uint8_t irq, uint8_t value);
 
 //Other.h
-//extern void   	      	flush_idt(void);
-extern void 	          flush_gdt(void);
-extern void             get_registers(struct registers_t*);
-extern void             push_flags(void);
-extern void             push_flagsD(void);
+//  void   	      	flush_idt(void);
+void 	          flush_gdt(void);
+void            get_registers(struct registers_t*);
+
 
 
 //Keyoard.h 
-extern void    	      	install_keyboard(void);
-extern void 	          keyboard_event(void);
+void    	      install_keyboard(void);
+void 	          keyboard_event(void);
 
 //Pci.h
-extern void             init_pci(uint16_t si);
-extern void             getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
+void            init_pci(uint16_t si);
+void            getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
 
 /*Terminal.h - Decrepit 
-extern void 			init_textmode(void);
-extern void 			clear_screen(void);
-extern void 			print_char(const char character);
-extern void 			print_string(const char* string);
-extern void 			print_number(uint32_t number);
+void 			init_textmode(void);
+void 			clear_screen(void);
+void 			print_char(const char character);
+void 			print_string(const char* string);
+void 			print_number(uint32_t number);
 */
 //Pit.h
-extern void             install_pit(void);
-extern void             pit_event(void);
-extern void             reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
+void            install_pit(void);
+void            pit_event(void);
+void            reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
 
-//extern enum DeviceType  getDeviceType(uint8_t bus, uint8_t device);
+//enum DeviceType  getDeviceType(uint8_t bus, uint8_t device);
 #endif

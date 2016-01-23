@@ -2,7 +2,7 @@
 #include "../include/ACOREFuncs.h"
 #include "../include/VGA.h"
 
-int8_t map_memory(uint8_t index){//haven't actually tested this
+int8_t vga_map_memory(uint8_t index){//haven't actually tested this
 	//RAM enabled bit setting
 	uint8_t reg = os_inb(0x3CC);
 	reg |= 2;
