@@ -1,15 +1,16 @@
 #include "../include/Memmap.h"
+#include "../include/Memtools.h"
 #include "../include/Other.h"
 #include <stdint.h>
 
-Memrange new_memory_map[64] = {0};
+struct Memrange new_memory_map[64];
 
 
 void sort_mapped_memory(void){
 	struct registers_t registers;
 	get_registers(&registers);
 	
-	uint8_t *pointer = (uint8_t*)(register.si);
+	uint8_t *pointer = (uint8_t*)(registers.esi);
 	char* test = "MEMCHECK_TEST_LOOK_HERE!!!"; //Ill look in memory
 	uint32_t table_size = (*(uint32_t*)pointer);
 	pointer += 4;

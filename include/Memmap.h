@@ -1,6 +1,8 @@
 #ifndef _MEMMAP_H 
 #define _MEMMAP_H
 
+#include <stdint.h>
+
 struct Memrange {
 	uint64_t base;
 	uint64_t length;

@@ -1,6 +1,7 @@
 #ifndef _OTHER_H
 #define _OTHER_H
 
+#include <stdint.h>
 //declarations - structures
 //(eflags, eax, ecx, edx, ebx, esp, ebp, esi, edi, ds, es, gs, fs, ss)
 //(cs, ss, fs, gs, es, ds, edi, esi, ebp, esp, ebx, edx, ecx, eax, eflags);

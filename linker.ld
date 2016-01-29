@@ -1,6 +1,6 @@
 
 ENTRY(kernel_main)
-OUTPUT("C:/OS/bin/kernel.bin")
+OUTPUT("/home/kofikofi123/NewStickOS/bin/kernel.bin")
 
 SECTIONS 
 {
