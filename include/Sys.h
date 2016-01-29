@@ -12,6 +12,7 @@
 #include "ACOREFuncs.h"
 #include "Pit.h"
 #include "Other.h"
+#include "Memmap.h"
 
 //core drivers
 #include "Keyboard.h"
@@ -25,43 +26,44 @@
 //Jonathan and Customailty helped me also 
 
 //Gdt.h
-void           	init_gdt(void);
+extern void           	init_gdt(void);
 
 //Idt.h
-void           	init_idt(void);
+extern void           	init_idt(void);
 
 //ACOREFuncs.h
-void           	os_cli(void);
-void           	os_sti(void);
-void           	os_halt(void);
-void           	os_outb(uint16_t port, uint8_t data);
-uint8_t        	os_inb(uint16_t port);
-void           	os_outw(uint16_t port, uint16_t data);
-uint16_t       	os_inw(uint16_t port);
-void           	os_outd(uint16_t port, uint32_t data);
-uint32_t       	os_ind(uint16_t port);
-void            os_cpuid(void);
-uint8_t         os_cpuid_supported(void);
+extern void           	os_cli(void);
+extern void           	os_sti(void);
+extern void           	os_halt(void);
+extern void           	os_outb(uint16_t port, uint8_t data);
+extern uint8_t        	os_inb(uint16_t port);
+extern void           	os_outw(uint16_t port, uint16_t data);
+extern uint16_t       	os_inw(uint16_t port);
+extern void           	os_outd(uint16_t port, uint32_t data);
+extern uint32_t       	os_ind(uint16_t port);
+extern void            	os_cpuid(void);
+extern uint8_t			os_cpuid_supported(void);
+
 //Pic.h   
-void 	          pic_eoi(uint8_t irq);
-uint16_t       	pic_irr(void);
-uint16_t       	pic_isr(void);
-void 			      mask_irq(uint8_t irq, uint8_t value);
+extern void 	        pic_eoi(uint8_t irq);
+extern uint16_t       	pic_irr(void);
+extern uint16_t       	pic_isr(void);
+extern void 			mask_irq(uint8_t irq, uint8_t value);
 
 //Other.h
 //  void   	      	flush_idt(void);
-void 	          flush_gdt(void);
-void            get_registers(struct registers_t*);
+extern void 	        flush_gdt(void);
+extern void            	get_registers(struct registers_t*);
 
 
 
 //Keyoard.h 
-void    	      install_keyboard(void);
-void 	          keyboard_event(void);
+extern void    	    	install_keyboard(void);
+extern void 	    	keyboard_event(void);
 
 //Pci.h
-void            init_pci(uint16_t si);
-void            getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
+extern void				init_pci(uint16_t si);
+extern void 			getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
 
 /*Terminal.h - Decrepit 
 void 			init_textmode(void);
@@ -71,9 +73,10 @@ void 			print_string(const char* string);
 void 			print_number(uint32_t number);
 */
 //Pit.h
-void            install_pit(void);
-void            pit_event(void);
-void            reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
+extern void           	install_pit(void);
+extern void           	pit_event(void);
+extern void           	reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
 
-//enum DeviceType  getDeviceType(uint8_t bus, uint8_t device);
+//Memmap
+extern void 			sort_mapped_memory(void);
 #endif

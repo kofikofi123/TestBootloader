@@ -25,8 +25,11 @@ detect_memory:
     push edx 
     push di
     lea di, [mdv]
-    xor ebx, ebx 
+	add di, 4
+    xor ebx, ebx
+	mov ecx, 0
 .read:
+	push ecx 
     mov eax, 0x0000E820 
     mov edx, 0x534D4150
     mov ecx, 24 
@@ -35,7 +38,9 @@ detect_memory:
     test ebx, ebx 
     jz short .finished
     
-    add di, 24 ;I think
+	pop ecx 
+	inc ecx 
+    add di, 24
     jmp .finished
 .error:
     lea si, [could_not_detect_memory_error]
@@ -43,6 +48,8 @@ detect_memory:
     mov eax, 1 
     ret 
 .finished:
+	pop ecx
+	mov dword [mdv], ecx
     xor eax, eax 
     pop di 
     pop edx 
@@ -173,7 +180,7 @@ could_not_detect_memory_error db "Error: Couldn't get memory map", 0
 test1 db "test1", 0
 ;mem_magic_number dw 0
 section .bss
-mdv: resb 1536 ;maybe
+mdv: resb 1540 ;maybe
 BITS 32
 section .text
 flush:
