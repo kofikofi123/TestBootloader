@@ -19,7 +19,7 @@
 
 //etc 
 #define KERNEL_VERSION "0.2.4"
-#define KERNEL_BUILDNUMBER 1 // decided to add a build number
+#define KERNEL_BUILDNUMBER 10 // decided to add a build number
 #define KERNEL_VENDOR "STICKOS"  
 #define KERNEL_AUTHORS "kofikofi123;Jonathan;Customailty"
 
