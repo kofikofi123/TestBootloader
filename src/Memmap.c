@@ -9,14 +9,14 @@ struct Memrange new_memory_map[64];
 void sort_mapped_memory(void){
 	struct registers_t registers;
 	get_registers(&registers);
-	
+	/*
 	uint8_t *pointer = (uint8_t*)(registers.esi);
 	char* test = "MEMCHECK_TEST_LOOK_HERE!!!"; //Ill look in memory
 	uint32_t table_size = (*(uint32_t*)pointer);
 	pointer += 4;
 	
 	char* test1 = "CHECKPOINT2";
-	memcpy(&new_memory_map, pointer, table_size * 24);
+	memcpy(&new_memory_map, pointer, table_size * 24);*/
 	
 	
 }
