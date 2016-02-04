@@ -16,43 +16,6 @@ extern void isr_handler(struct Interrupt_parameters iparam);
 extern void irq_handler(struct Interrupt_parameters iparam);
 static void encode_idt(uint8_t index, uint32_t offset, uint16_t selector, uint8_t type);
 
-const char* Exceptions[] = {
-	"Divide by 0", // 0
-	"Debug",
-	"Non-maskable Interrupt",
-	"Breakpoint",
-	"Overflow", //4
-	"BoundRangeExceeded",
-	"Invalid Opcode",
-	"Device Not Available",
-	"Double Fault",
-	"Reserved", // 9
-	"Invalid TSS",
-	"Segment Not Present",
-	"Stack-Segment Fault"
-	"General Protection Fault",
-	"Page Fault",
-	"Reserved",
-	"x87 Floating-Point Exception",
-	"Alignment Check",
-	"Machine Check",
-	"SIMD Floating-Point Exeception",
-	"Virtualization Exception",
-	"Reserved",
-	"Reserved",
-	"Reserved",
-	"Reserved",
-	"Reserved",
-	"Reserved",
-	"Reserved",
-	"Reserved",
-	"Reserved",
-	"Security Exception",
-	"Reserved",
-	"Triple Fault",
-	"Reserved"
-};
-
 
 void init_idt(void){
   encode_idt(0, (unsigned)isr0, 0x08, 0x8E);
