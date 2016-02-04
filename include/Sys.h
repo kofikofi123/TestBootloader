@@ -78,5 +78,5 @@ extern void           	pit_event(void);
 extern void           	reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
 
 //Memmap
-extern void 			sort_mapped_memory(void);
+extern void 			      sort_mapped_memory(void);
 #endif

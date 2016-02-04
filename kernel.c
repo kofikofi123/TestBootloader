@@ -14,7 +14,7 @@ int kernel_main(void){
 	
 	__asm__ volatile("popad");
 	//kernel_sleep()
-	sort_mapped_memory();
+	//sort_mapped_memory();
 	
 	while (1){
 	    os_halt();
