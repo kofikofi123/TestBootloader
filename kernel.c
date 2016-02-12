@@ -1,7 +1,7 @@
 #include "include/Sys.h"
 
 int kernel_main(void){
-	//__asm__ volatile("pushad");
+	__asm__ volatile("pushad");
 	
 	init_gdt();
 	init_idt();
@@ -12,7 +12,7 @@ int kernel_main(void){
 	
 	os_sti();
 	
-	//__asm__ volatile("popad");
+	__asm__ volatile("popad");
 	//kernel_sleep()
 	//sort_mapped_memory();
 	
