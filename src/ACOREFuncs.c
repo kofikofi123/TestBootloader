@@ -56,7 +56,7 @@ uint16_t os_inw(uint16_t port){
 	
 }
 inline void os_outd(uint16_t port, uint32_t data){
-	__asm__ volatile ("out dx, eax"
+	__asm__("out dx, eax"
 			:
 			: "d" (port), "a" (data));
 	return;
@@ -64,13 +64,13 @@ inline void os_outd(uint16_t port, uint32_t data){
 
 inline uint32_t  os_ind(uint16_t port){
 	uint32_t temp = 0;
-	__asm__ volatile ("in eax, dx"
+	__asm__("in eax, dx"
 			: "=a" (temp)
 			: "d" (port));
 	return temp;
 }
 
 inline void os_cpuid(void){
-  __asm__ volatile ("cpuid");
+  __asm__("cpuid");
   return;
 }
