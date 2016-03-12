@@ -1,6 +1,8 @@
 #ifndef _VGA_H
 #define _VGA_H
 
+
+
 #include <stdint.h>
 /*
 int8_t 	map_memory(uint8_t index);
@@ -18,9 +20,12 @@ struct Graphics_Register {
     uint8_t BitMaskRegister;
 }__attribute__((packed));
 
+struct VGARegisters {
+    struct GraphicsModeRegister graphics;
+};
 
-void flush_graphics_register(void);
-
+void write_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
+void flush_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
 
 
 #endif

@@ -1,11 +1,12 @@
 #include "../include/Textmode.h"
-/*
-volatile unsigned char* video_memory;
+#include "../include/VGA.h"
+
+
+VGARegisters vga_regs;
+
 
 void init_textmode(void){
-  //vga_init_textmode() or vga_init_mode(0) or vga_reloadGraphicsReg() idk
-  //set_position(0, 0);
-  video_memory = (unsigned char*)0xb8000;//vga_get_addr(); vga will soon be her, probable function
-  return;
+    flush_vga_registers(&vga_regs, 9, 0x3CE, 0x3CF);
+    write_vga_registers(&vga_regs, 9, 0x3CE, 0x3CF);
+    return;
 }
-*/
