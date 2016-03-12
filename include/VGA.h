@@ -20,8 +20,16 @@ struct Graphics_Register {
     uint8_t BitMaskRegister;
 }__attribute__((packed));
 
+struct Sequencer_Register { 
+    uint8_t ResetRegister;
+    uint8_t ClockingModeRegister;
+    uint8_t MapMaskRegister;
+    uint8_t CharacterMapSelectRegister;
+    uint8_t SequencerMemoryModeRegister;
+}__attribute__((packed));
 struct VGARegisters {
     struct GraphicsModeRegister graphics;
+    struct Sequencer_Register sequencer;
 };
 
 void write_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
