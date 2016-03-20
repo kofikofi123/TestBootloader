@@ -37,6 +37,8 @@ main:
 	mov sp, 0x9C00
 	sti
 	
+	lea si, [hello_messages]
+	call print_string
 	
 	mov [bdrive], dl
 	pusha
@@ -217,6 +219,7 @@ kernel_name_size equ $-kernel_name
 stage2_name db "BOOT2.BIN"
 stage2_name_size equ $-stage2_name
 ;messages
+hello_messages db "Hello dere", 0
 filesystem_identification db "CD001", 0
 read_failed db "read failed", 0
 incorrect_filesystem db "Incorrect filesystem", 0

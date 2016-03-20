@@ -1,6 +1,7 @@
 #include "../include/Keyboard.h"
 #include "../include/Irq.h"
 #include "../include/ACOREFuncs.h"
+//#include "../include/Vga.h" future testing
 
 static int* test = (int*)0xB8000;
 

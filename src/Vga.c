@@ -42,7 +42,7 @@ void write_indexbased_registers(void* registers, uint16_t num_registers, uint16_
     }
 }
 
-void flush_indexbased_registers(void* registers, uint16_t num_registers, uint16_t address_port, uint16_t data_por){
+void flush_indexbased_registers(void* registers, uint16_t num_registers, uint16_t address_port, uint16_t data_port){
     uint8_t* casted = (uint8_t*)registers;
     for (uint16_t x = 0; x < num_registers; x++){
         os_outw(address_port, x);
