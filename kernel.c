@@ -12,8 +12,6 @@ int kernel_main(void){
 	os_sti();
 	
 	
-	*(int*)(0xB8000) = 0x07690748;
-	
 	//__asm__("popad");
 	//kernel_sleep()
 	//sort_mapped_memory();

@@ -56,7 +56,7 @@ struct VGARegisters {
     struct Graphics_Register graphics;
     struct Sequencer_Register sequencer;
     struct CRTC_Register crtc;
-};
+}__attribute__((packed));
 
 void write_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
 void flush_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);

@@ -50,3 +50,4 @@ void flush_indexbased_registers(void* registers, uint16_t num_registers, uint16_
         *casted++ = os_inb(data_port);
     }
 }
+

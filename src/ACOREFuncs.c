@@ -74,3 +74,7 @@ inline void os_cpuid(void){
   __asm__("cpuid");
   return;
 }
+
+inline uint32_t os_get_boot_settings(void){
+	return *(uint32_t*)(0x7C00); //not ready
+}

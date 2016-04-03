@@ -19,6 +19,26 @@ print_string:
 	pop ax
 	ret
 
+detect_pci:
+	pusha 
+	mov ax, 0xb101
+	xor edi, edi 
+	int 0x1A
+	
+	cmp edx, 20494350h
+	jne .error 
+	push al
+	mov al, 0b10000000 
+	mov byte [boot_settings + 3], al 
+	pop al
+	mov byte [boot_settings], al
+	
+.error:
+	mov al, 0b00000000
+	mov byte [boot_settings + 3], al 
+	jmp .done
+.done:
+	popa 
 detect_memory:
     push ebx
     push ecx 
@@ -141,6 +161,7 @@ Main:
 	mov sp, 0x7DFF
 	
 	call detect_memory 
+	call detect_pci
 	cmp eax, 1 
 	je short replop
 ;check_for_pci:
@@ -179,6 +200,7 @@ error_loading_gdt_message db "Error: System doesn't support a20 ", 0
 could_not_detect_memory_error db "Error: Couldn't get memory map", 0
 test1 db "test1", 0
 ;mem_magic_number dw 0
+boot_settings dd 0 
 section .bss
 mdv: resb 1540 ;maybe
 BITS 32
