@@ -162,8 +162,8 @@ Main:
 	mov sp, 0x7DFF
 	
 	call detect_memory
-	cmp ax, 1 
-	je short replop
+	;cmp ax, 1 
+	;je short replop
 	;call detect_pci
 	
 ;check_for_pci:
