@@ -86,6 +86,7 @@ static void encode_idt(uint8_t index, uint32_t offset, uint16_t selector, uint8_
 
 
 extern void isr_handler(struct Interrupt_parameters iparam){
+    *(int*)0xB8000 = 0x07690748;
 	if (iparam.vendor_code == 7){
 		os_cli();
 		os_halt();
