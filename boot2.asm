@@ -27,10 +27,10 @@ detect_pci:
 	
 	cmp edx, 20494350h
 	jne .error 
-	push al
+	push ax 
 	mov al, 0b10000000 
 	mov byte [boot_settings + 3], al 
-	pop al
+	pop ax
 	mov byte [boot_settings], al
 	
 .error:

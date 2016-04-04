@@ -12,6 +12,7 @@ int kernel_main(void){
 	os_sti();
 	
 	
+	
 	//__asm__("popad");
 	//kernel_sleep()
 	//sort_mapped_memory();

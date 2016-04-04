@@ -36,7 +36,7 @@ struct Status_t {
   uint8_t InterruptStatus : 1;
   uint8_t CapabilitiesList : 1;
   uint8_t MHz66Capable : 1;
-  uint8_t Reserved : 1;
+  uint8_t Reserved2 : 1;
   uint8_t FastBacktoBackCapable : 1;
   uint8_t MasterDataParityError : 1;
   uint8_t DEVSELTiming : 2;
@@ -108,8 +108,8 @@ enum DeviceType {
 
 void init_pci(void);
 void getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
-void getDevices(struct Device** device_t, uint8_t bus, uint8_t device)
-enum DeviecType getDeviceType(uint8_t bus, uint8_t device);
+void getDevices(struct Device** device_t, uint8_t bus, uint8_t device);
+enum DeviceType getDeviceType(uint8_t bus, uint8_t device);
 
 
 //uint8_t get_devices(void);

@@ -62,8 +62,10 @@ extern void    	    	install_keyboard(void);
 extern void 	    	keyboard_event(void);
 
 //Pci.h
-extern void				init_pci(uint16_t si);
-extern void 			getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
+extern void             init_pci(void);
+extern void             getDevice(struct Device* device_t, uint8_t bus, uint8_t device);
+extern void             getDevices(struct Device** device_t, uint8_t bus, uint8_t device);
+extern enum             DeviceType getDeviceType(uint8_t bus, uint8_t device);
 
 /*Terminal.h - Decrepit 
 void 			init_textmode(void);
@@ -78,5 +80,5 @@ extern void           	pit_event(void);
 extern void           	reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
 
 //Memmap
-extern void 			      sort_mapped_memory(void);
+extern void 			sort_mapped_memory(void);
 #endif
