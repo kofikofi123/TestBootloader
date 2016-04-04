@@ -39,6 +39,7 @@ detect_pci:
 	jmp .done
 .done:
 	popa 
+	ret 
 detect_memory:
     push ebx
     push ecx 
