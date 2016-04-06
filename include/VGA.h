@@ -52,14 +52,25 @@ struct CRTC_Register {
     uint8_t LineCompareRegister;
 }__attribute__((packed));
 
+struct External_Register {
+    uint8_t MiscellaneousOutputRegister;
+    uint8_t FeatureControlRegister;
+    uint8_t InputStatusRegister0;
+    uint8_t InputStatusRegister2;
+}__attribute__((packed));
+
 struct VGARegisters {
     struct Graphics_Register graphics;
     struct Sequencer_Register sequencer;
     struct CRTC_Register crtc;
+    struct External_Register external; // special
+    
 }__attribute__((packed));
 
 void write_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
 void flush_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
-
+void write_external_register(struct External_Register*);
+void read_external_register(struct External_Register*);
+void flush_vga_register(struct VGARegisters*);
 
 #endif

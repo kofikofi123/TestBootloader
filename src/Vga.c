@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include "../include/ACOREFuncs.h"
 #include "../include/VGA.h"
+#include "../include/Irq."
+
+//static void toggle_vga_interrupts(uint8_t bool);
 /*
 int8_t vga_map_memory(uint8_t index){//haven't actually tested this
 	//RAM enabled bit setting
@@ -50,4 +53,22 @@ void flush_indexbased_registers(void* registers, uint16_t num_registers, uint16_
         *casted++ = os_inb(data_port);
     }
 }
+
+void flush_vga_register(struct VGARegisters* vgareg){
+    write_indexbased_registers(&vgareg->graphics, 9, 0x3CE, 0x3CF);
+    write_indexbased_registers(&vgareg->sequencer, 5, 0x3C4, 0x3C5);
+    //write_indexbased_registers(vgareg->crtc, 25, 15, )
+    write_external_register(&vgareg->external);
+}
+
+void write_external_register(struct External_Register* reg){
+    
+    
+}
+
+void read_external_register(struct External_Register*);
+/*
+static void toggle_vga_interrupts(uint8_t bool){
+       
+}*/
 

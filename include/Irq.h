@@ -22,6 +22,7 @@ void irq15(void);
 
 typedef void(*irq_handler_t)(void);
 
-void install_irq(uint8_t index, irq_handler_t handler);
-void remove_irq(uint8_t index);
+void install_irq(uint16_t index, irq_handler_t handler);
+void remove_irq(uint16_t index);
+void mask_ireq(uint16_t index);
 #endif

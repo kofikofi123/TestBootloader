@@ -9,17 +9,20 @@
 #include "Gdt.h"
 #include "Pic.h"
 #include "Pci.h"
+#include "Atapi.h""
+#include "Irq.h"
 #include "ACOREFuncs.h"
 #include "Pit.h"
 #include "Other.h"
 #include "Memmap.h"
+#include "VGA.h
 
 //core drivers
 #include "Keyboard.h"
 
 //etc 
 #define KERNEL_VERSION "0.2.4"
-#define KERNEL_BUILDNUMBER 10 // decided to add a build number
+#define KERNEL_BUILDNUMBER 11 // decided to add a build number
 #define KERNEL_VENDOR "STICKOS"  
 #define KERNEL_AUTHORS "kofikofi123;Jonathan;Customality"
 
@@ -55,7 +58,10 @@ extern void 			mask_irq(uint8_t irq, uint8_t value);
 extern void 	        flush_gdt(void);
 extern void            	get_registers(struct registers_t*);
 
-
+//Irq.h 
+extern void             install_irq(uint16_t index, irq_handler_t handler);
+extern void             remove_irq(uint16_t index);
+extern void             mask_ireq(uint16_t index);
 
 //Keyoard.h 
 extern void    	    	install_keyboard(void);
@@ -79,6 +85,14 @@ extern void           	install_pit(void);
 extern void           	pit_event(void);
 extern void           	reloadRegister(uint8_t channel, uint8_t mode, uint16_t reload_value);
 
-//Memmap
+//Memmap.h 
 extern void 			sort_mapped_memory(void);
+
+//Vga.h 
+extern void             write_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
+extern void             flush_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
+extern void             flush_vga_register(struct VGARegisters*);
+
+//Atapi.h 
+extern void             atapi_init(void);
 #endif
