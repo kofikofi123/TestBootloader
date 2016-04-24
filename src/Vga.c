@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "../include/ACOREFuncs.h"
 #include "../include/VGA.h"
-#include "../include/Irq."
+#include "../include/Irq.h"
 
 //static void toggle_vga_interrupts(uint8_t bool);
 /*
@@ -54,7 +54,7 @@ void flush_indexbased_registers(void* registers, uint16_t num_registers, uint16_
     }
 }
 
-void flush_vga_register(struct VGARegisters* vgareg){
+void write_vga_register(struct VGARegisters* vgareg){
     write_indexbased_registers(&vgareg->graphics, 9, 0x3CE, 0x3CF);
     write_indexbased_registers(&vgareg->sequencer, 5, 0x3C4, 0x3C5);
     //write_indexbased_registers(vgareg->crtc, 25, 15, )
@@ -62,8 +62,12 @@ void flush_vga_register(struct VGARegisters* vgareg){
 }
 
 void write_external_register(struct External_Register* reg){
-    
-    
+    os_outb(0x3C2, reg->MiscellaneousOutputRegister);
+#ifdef _VGA_MONO_COLORS
+    os_outb(0x3BA, reg->FeatureControlRegister);
+#elif _VGA_NOMONO_COLORS
+    os_outb(0x3DA, reg->FeatureControlRegister);
+#endif//meh
 }
 
 void read_external_register(struct External_Register*);

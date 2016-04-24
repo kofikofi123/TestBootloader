@@ -4,7 +4,7 @@
 #include "../include/Memtools.h"
 #include "../include/Pic.h"
 #include "../include/Other.h"
-#include "../include/Irq.h"
+//#include "../include/Irq.h"
 #include <stdint.h>
 
 struct IDT_pointer idtp;
@@ -112,12 +112,12 @@ extern void irq_handler(struct Interrupt_parameters iparam){
 	return;
 }
 
-void install_irq(uint8_t index, irq_handler_t handler){
+void install_irq(uint16_t index, irq_handler_t handler){
 	irqs[index] = handler;
 	return;
 }
 
-void remove_irq(uint8_t index){
+void remove_irq(uint16_t index){
 	irqs[index] = 0;
 	return;
 }

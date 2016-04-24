@@ -68,9 +68,9 @@ struct VGARegisters {
 }__attribute__((packed));
 
 void write_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
-void flush_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
+void read_indexbased_registers(void*, uint16_t, uint16_t, uint16_t);
 void write_external_register(struct External_Register*);
 void read_external_register(struct External_Register*);
-void flush_vga_register(struct VGARegisters*);
+void read_vga_registers(struct VGARegisters*);
 
 #endif

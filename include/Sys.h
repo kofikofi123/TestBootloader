@@ -9,13 +9,13 @@
 #include "Gdt.h"
 #include "Pic.h"
 #include "Pci.h"
-#include "Atapi.h""
+#include "Atapi.h"
 #include "Irq.h"
 #include "ACOREFuncs.h"
 #include "Pit.h"
 #include "Other.h"
 #include "Memmap.h"
-#include "VGA.h
+#include "VGA.h"
 
 //core drivers
 #include "Keyboard.h"
@@ -35,17 +35,19 @@ extern void           	init_gdt(void);
 extern void           	init_idt(void);
 
 //ACOREFuncs.h
-extern void           	os_cli(void);
-extern void           	os_sti(void);
-extern void           	os_halt(void);
-extern void           	os_outb(uint16_t port, uint8_t data);
-extern uint8_t        	os_inb(uint16_t port);
-extern void           	os_outw(uint16_t port, uint16_t data);
-extern uint16_t       	os_inw(uint16_t port);
-extern void           	os_outd(uint16_t port, uint32_t data);
-extern uint32_t       	os_ind(uint16_t port);
-extern void            	os_cpuid(void);
-extern uint8_t			os_cpuid_supported(void);
+extern void      os_halt(void);
+extern void      os_cli(void);
+extern void      os_sti(void);
+extern void      os_io_wait(void);
+extern void      os_outb(uint16_t port, uint8_t data);
+extern uint8_t   os_inb(uint16_t port);
+extern void      os_outw(uint16_t port, uint16_t data);
+extern uint16_t  os_inw(uint16_t port);
+extern void      os_outd(uint16_t port, uint32_t data);
+extern uint32_t  os_ind(uint16_t port);
+extern int8_t   os_cpuid(uint32_t*, uint32_t*, uint32_t*, uint32_t*);
+extern int8_t   os_cpuid_supported(void);
+extern uint32_t  os_get_boot_settings(void);
 
 //Pic.h   
 extern void 	        pic_eoi(uint8_t irq);

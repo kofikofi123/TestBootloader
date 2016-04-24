@@ -42,7 +42,7 @@ struct Status_t {
   uint8_t DEVSELTiming : 2;
   uint8_t SignaledTargetAbort : 1;
   uint8_t RecievedTargetAbort : 1;
-  uint8_t RecievedMaster
+  uint8_t RecievedMaster;
 }__attribute__((packed));
 
 struct Command_t {

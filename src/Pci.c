@@ -8,7 +8,7 @@
 
 static uint8_t readConfigB(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset);
 static uint16_t readConfigW(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset);
-static uint32_t readConfigD(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset);
+//static uint32_t readConfigD(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset);
 //static void Update(void);
 //static void getStatus(struct Status_t* status, uint8_t bus, uint8_t device);
 
@@ -28,14 +28,14 @@ enum DeviceType getDeviceType(uint8_t bus, uint8_t device){
 
 
 
-
+/*
 static uint32_t readConfigD(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset){
   uint32_t address = ((0x80000000) | (bus << 16) | (device << 11) | (function << 8) | (offset & 0xFC));
   
   os_outd(CONFIG_ADDRESS, address);
   
   return os_ind(CONFIG_DATA);
-}
+}*/
 
 static uint16_t readConfigW(uint8_t bus, uint8_t device, uint8_t function, uint8_t offset){
   uint32_t address = ((0x80000000) | (bus << 16) | (device << 11) | (function << 8) | (offset & 0xFC));

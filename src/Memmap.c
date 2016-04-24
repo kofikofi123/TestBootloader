@@ -7,7 +7,7 @@ struct Memrange new_memory_map[64];
 
 
 void sort_mapped_memory(void){
-	struct registers_t registers;
+	//struct registers_t registers;
 	//get_registers(&registers);
 	/*
 	uint8_t *pointer = (uint8_t*)(registers.esi);
