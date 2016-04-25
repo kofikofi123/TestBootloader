@@ -11,7 +11,15 @@ int kernel_main(void){
 	
 	os_sti();
 	
-	
+	/*{
+		const char* test1 = "kofi was here kofi";
+		const char* test2 = "kofi";
+		
+		int32_t temp = string_find(test1, test2, 0, STRING_END); >kofi 
+		int32_t temp2 = string_find(test1, test2, 4, STRING_END); >kofi
+		uint32_t temp3 = string_len(test1); > length of test1 
+		
+	}*/
 	
 	while (1){
 	    os_halt();
