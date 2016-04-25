@@ -4,7 +4,7 @@
 
 int32_t string_find(const char* str, const char* cocstr, uint32_t start, uint32_t finish){
 	const uint32_t size = string_len(str);
-	const uint32_t csize = string_len(cocstr);
+	//const uint32_t csize = string_len(cocstr);
 	
 	int32_t temp = STRING_NOMATCH;
 	if (finish == STRING_END || finish > size)
