@@ -20,64 +20,19 @@ print_string:
 	ret
 
 detect_pci:
-	pusha 
-	mov ax, 0xb101
-	xor edi, edi 
-	int 0x1A
-	
-	cmp edx, 20494350h
-	jne .error 
-	push ax 
-	mov al, 0b10000000 
-	mov byte [boot_settings + 3], al 
-	pop ax
-	mov byte [boot_settings], al
-	
-.error:
-	mov al, 0b00000000
-	mov byte [boot_settings + 3], al 
-	jmp .done
-.done:
-	popa 
-	ret 
-detect_memory:
-    push ebx
-    push ecx 
-    push edx 
-    push di
-    lea di, [mdv]
-	add di, 4
-    xor ebx, ebx
-	mov ecx, 0
-.read:
-	push ecx 
-    mov eax, 0x0000E820 
+    pushad
+.operation:
+    mov eax, 0xE820 
+    mov ebx, [mem_magic_number]
+    lea di, [mdv] 
+    mov ecx, 0x14 
     mov edx, 0x534D4150
-    mov ecx, 24 
-    int 0x15 
-    jc short .error
-    test ebx, ebx 
-    jz short .finished
-    
-	pop ecx 
-	inc ecx 
-    add di, 24
-    jmp .finished
-.error:
-    lea si, [could_not_detect_memory_error]
-    call print_string
-    mov eax, 1 
-    ret 
-.finished:
-	pop ecx
-	mov dword [mdv], ecx
-    xor eax, eax 
-    pop di 
-    pop edx 
-    pop ecx
-    pop ebx 
-    ret 
-    
+.check:
+    jc .error 
+    cmp eax, 0x534D4150
+    jne .error
+.done:
+    ret
 load_gdt:
 	lgdt [gdt] 
 	ret 
@@ -198,10 +153,13 @@ load_the_gdt:
 	
 	jmp 0x08:flush
 
+section .data
 error_loading_gdt_message db "Error: System doesn't support a20 ", 0
 could_not_detect_memory_error db "Error: Couldn't get memory map", 0
 test1 db "test1", 0
-;mem_magic_number dw 0
+
+mem_magic_number dd 0 
+
 boot_settings dd 0 
 section .bss
 mdv: resb 1540 ;maybe
