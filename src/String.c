@@ -30,7 +30,7 @@ int32_t string_find(const char* str, const char* cocstr, uint32_t start, uint32_
 
 
 uint32_t string_len(const char* str){
-	char* temp = (char*)str;
+	char* temp = (char*)str; 
 	while (*temp != 0){
 		++temp;
 	}
