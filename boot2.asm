@@ -31,8 +31,13 @@ detect_pci:
     jc .error 
     cmp eax, 0x534D4150
     jne .error
+    mov ax, 0 
+    jmp .done
+.error:
+    mov ax, 1 
 .done:
     ret
+    
 load_gdt:
 	lgdt [gdt] 
 	ret 

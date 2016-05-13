@@ -12,10 +12,10 @@ struct ELF {
         uint8_t Padding[16];
     }__attribute__((packed)) Header;
     uint16_t Type;
-    uint16_t Machine
-}__attribute__((packed));
+    uint16_t Machine;
+}__attribute__((packed));//not done
 
-void parse_elf(struct* ELF, const char*);
-void confirm_elf(struct* ELF, uint8_t*);
+void parse_elf(struct ELF*, const char*);
+void confirm_elf(struct ELF*, uint8_t*);
 
 #endif
