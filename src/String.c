@@ -30,10 +30,9 @@ int32_t string_find(const char* str, const char* cocstr, uint32_t start, uint32_
 
 
 uint32_t string_len(const char* str){
-	uint32_t temp = 0;
-	
-	while (*str++ != 0){
-		temp++;
+	char* temp = (char*)str;
+	while (*temp != 0){
+		++temp;
 	}
-	return temp;
+	return temp-str;
 }
