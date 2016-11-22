@@ -56,4 +56,5 @@ looper:
 bdrive: db 0
 error_message1: db "Unable to reset boot drive.", 0
 test_message1: db "tester imager", 0
-times 512-($$-$) db 0
+times 510-($-$$) db 0
+dw 0xAA55
