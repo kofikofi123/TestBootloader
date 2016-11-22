@@ -15,14 +15,13 @@ Print_string: ;we are going to use the interrupt service because I do not need t
     cld
     
     mov ah, 0x0E
+    mov bl, 0x0F
 .looper:
     lodsb
     
     or al, al 
     jz .fini
     
-    mov bh, 0 
-    mov cx, 1 
     int 0x10 
     inc edi
     jmp .looper
