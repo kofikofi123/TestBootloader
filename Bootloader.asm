@@ -7,8 +7,6 @@ jmp 0x00:Main
 Reset_drive:
     mov ax, 0
     int 0x13 
-    lahf 
-    and ax, 1 
     ret
     
 Print_string: ;we are going to use the interrupt service because I do not need to directly write to it right now
@@ -16,15 +14,18 @@ Print_string: ;we are going to use the interrupt service because I do not need t
     pushf 
     cld
     
+    mov ah, 0x0E
 .looper:
-    mov al, [edi]
+    lodsb
     
     or al, al 
-    jz .fini 
+    jz .fini
     
     mov bh, 0 
     mov cx, 1 
     int 0x10 
+    inc edi
+    jmp .looper
 .fini:
     popf
     popa 
@@ -48,7 +49,8 @@ Main:
     lea edi, [error_message1]
     call Print_string
 .start_parsing:
-    ;nothing
+    lea edi, [test_message1]
+    call Print_string
 looper:
     jmp looper
     
