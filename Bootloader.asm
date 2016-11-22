@@ -54,5 +54,6 @@ looper:
     
 ;variables
 bdrive: db 0
-error_message1: db "Unable to reset boot drive."
+error_message1: db "Unable to reset boot drive.", db 0
+test_message1: db "tester imager", db 0
 times 512-($$-$) db 0
