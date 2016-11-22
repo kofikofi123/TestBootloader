@@ -44,13 +44,15 @@ Main:
     call Reset_drive 
     or ax, 1 
     jnz .start_parsing
-    loop .clear_drive_begin 
+    loop .clear_drive_begin
+    lea edi, [error_message1]
+    call Print_string
 .start_parsing:
-    
+    ;nothing
 looper:
     jmp looper
     
 ;variables
 bdrive: db 0
-error_message: db "Unable to reset boot drive."
+error_message1: db "Unable to reset boot drive."
 times 512-($$-$) db 0
