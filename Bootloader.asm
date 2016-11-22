@@ -23,7 +23,6 @@ Print_string: ;we are going to use the interrupt service because I do not need t
     jz .fini
     
     int 0x10 
-    inc edi
     jmp .looper
 .fini:
     popf
@@ -45,10 +44,10 @@ Main:
     or ax, 1 
     jnz .start_parsing
     loop .clear_drive_begin
-    lea edi, [error_message1]
+    lea si, [error_message1]
     call Print_string
 .start_parsing:
-    lea edi, [test_message1]
+    lea si, [test_message1]
     call Print_string
 looper:
     jmp looper
