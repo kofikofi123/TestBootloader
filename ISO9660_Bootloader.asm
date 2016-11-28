@@ -1,5 +1,6 @@
 ;Do not test anything below, please
-
+;Warning if you do run it: I did not finish some of the operation, or even test it.
+;This means it could get at places, mess something up, error
 org 0x7C00
 
 jmp 0x00:Main
@@ -79,19 +80,25 @@ Main:
 ;reset drive
 .reset_drive_begin:
     call Reset_drive 
-    jnc .start_reading
+    jnc .setup_reading
     loop .reset_drive_begin
     lea si, [error_message1]
     call Print_string
     jmp looper
-.start_reading:
+.setup_reading:
     ;init data packet
     mov ax, 1 
     mov bx, 0 
     mov si, 0x10
     lea di, [disk_buffer]
+.start_reading:
+    ;label not finished
     call Read_sector
-
+    pusha
+.loop_through_disk:
+    ;nothing for now
+.evaluate_volumes:
+    popa
 looper:
     jmp looper
 
@@ -101,10 +108,12 @@ bdrive: db 0
 
 error_message1: db "Unable to reset boot drive.", 0
 error_message2: db "Extended bios interrupts not supported. Try again or use different bootloader", 0
+error_message3: db "Invalid filesystem", 0
 
 test_message1: db "tester imager", 0
 kernel_file_name db "STICK.BIN", 0 
 boot_setting_file_name db ""
+filesystel_validation_string db "CD001", 0
 
 disk_packet_struct:
     db 0x10
