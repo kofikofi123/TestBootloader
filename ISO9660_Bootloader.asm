@@ -1,7 +1,9 @@
 ;Do not test anything below, please
 ;Warning if you do run it: I did not finish some of the operation, or even test it.
 ;This means it could get at places, mess something up, error
-org 0x7C00
+BITS 16
+
+ORG 0x7C00
 
 jmp 0x00:Main
 
@@ -49,6 +51,20 @@ Read_sector:;register destroyer
 Read_file:
     ret  
 
+Validate_sector:
+    xchg bx, bx
+    lea si, [disk_buffer + 1]
+    lea di, [filesystel_validation_string]
+    mov cx, 5 
+    xchg bx, bx
+    repe cmpsb
+    ret
+    
+Validate_volume_id:
+    push bx 
+    mov bl, byte [disk_buffer]
+    cmp al, bl 
+    ret
 
 Main:
     xor ax, ax 
@@ -56,7 +72,7 @@ Main:
     
     cli
     mov ss, ax
-    mov sp, 0x7DFF
+    mov sp, 0x7BFF
     sti 
     
     mov [bdrive], dl
@@ -73,8 +89,7 @@ Main:
     jnz .supported
 .not_supported: ;
     lea si, [error_message2]
-    call Print_string
-    jmp looper
+    jmp .errornous
 .supported: ; :(
     mov cl, 5
 ;reset drive
@@ -83,26 +98,31 @@ Main:
     jnc .setup_reading
     loop .reset_drive_begin
     lea si, [error_message1]
-    call Print_string
-    jmp looper
+    jmp .errornous
+    ;for next instructions
+    mov si, 0x10
 .setup_reading:
+    xchg bx, bx
     ;init data packet
     mov ax, 1 
-    mov bx, 0 
-    mov si, 0x10
+    mov bx, 0
     lea di, [disk_buffer]
 .start_reading:
     ;label not finished
     call Read_sector
-    pusha
-.loop_through_disk:
-    ;nothing for now
-.evaluate_volumes:
-    popa
+    call Validate_sector
+    je .primary_found ;for now; testing
+    lea si, [error_message3]
+    jmp .errornous
+.primary_found:
+    lea si, [test_message1]
+    call Print_string
+    jmp looper
+.errornous:
+    call Print_string ;si should already be loaded
 looper:
     jmp looper
 
-section .data
 ;variables
 bdrive: db 0
 
@@ -126,8 +146,11 @@ disk_packet_struct:
 .lba_address:
     dq 0
 
+db 0x0F
+db 0xF0
+db 0xFF
+
 times 510-($-$$) db 0
 db 0x55
 db 0xAA
-section .bss
-disk_buffer: resb 2048
+disk_buffer: times 2048 db 0
