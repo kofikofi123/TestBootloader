@@ -39,24 +39,36 @@ Read_sector:;register destroyer
     mov word [disk_packet_struct.read_address + 2], bx 
     mov word [disk_packet_struct.lba_address], si 
 
+    push ds 
+    push dx 
+    push si 
+    push ax
+
+    xor ax, ax 
+    mov ds, ax 
 .begin:
     mov dl, [bdrive]
     lea si, [disk_packet_struct] ;ds should already be 0
     mov ah, 0x42
+    xchg bx, bx
     int 0x13
+    xchg bx, bx
     jnc .fini
     loop .begin
 .fini:
+    pop ax 
+    pop si
+    pop dx 
+    pop ds
     ret
+
 Read_file:
     ret  
 
 Validate_sector:
-    xchg bx, bx
     lea si, [disk_buffer + 1]
     lea di, [filesystel_validation_string]
     mov cx, 5 
-    xchg bx, bx
     repe cmpsb
     ret
     
@@ -77,16 +89,11 @@ Main:
     
     mov [bdrive], dl
     ;Check if extended 0x13 funcctions are supported
-    xchg bx, bx
     mov ah, 0x41
     mov bx, 0x55AA
     mov dl, [bdrive]
     int 0x13
     jnc .supported
-    
-    xchg bx, bx
-    and cl, 1
-    jnz .supported
 .not_supported: ;
     lea si, [error_message2]
     jmp .errornous
@@ -99,10 +106,9 @@ Main:
     loop .reset_drive_begin
     lea si, [error_message1]
     jmp .errornous
-    ;for next instructions
-    mov si, 0x10
+
 .setup_reading:
-    xchg bx, bx
+    mov si, 16
     ;init data packet
     mov ax, 1 
     mov bx, 0
@@ -110,13 +116,6 @@ Main:
 .start_reading:
     ;label not finished
     call Read_sector
-    call Validate_sector
-    je .primary_found ;for now; testing
-    lea si, [error_message3]
-    jmp .errornous
-.primary_found:
-    lea si, [test_message1]
-    call Print_string
     jmp looper
 .errornous:
     call Print_string ;si should already be loaded
@@ -134,6 +133,7 @@ test_message1: db "tester imager", 0
 kernel_file_name db "STICK.BIN", 0 
 boot_setting_file_name db ""
 filesystel_validation_string db "CD001", 0
+test_buffer: times 6 db 0
 
 disk_packet_struct:
     db 0x10
@@ -145,10 +145,6 @@ disk_packet_struct:
     dw 0
 .lba_address:
     dq 0
-
-db 0x0F
-db 0xF0
-db 0xFF
 
 times 510-($-$$) db 0
 db 0x55
