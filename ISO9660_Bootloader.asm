@@ -66,10 +66,18 @@ Read_file:
     ret  
 
 Validate_sector:
+    push si 
+    push di 
+    push cx
+.compare:
     lea si, [disk_buffer + 1]
     lea di, [filesystel_validation_string]
     mov cx, 5 
     repe cmpsb
+.fini:
+    pop cx 
+    pop di 
+    pop si
     ret
     
 Validate_volume_id:
@@ -116,7 +124,12 @@ Main:
 .start_reading:
     ;label not finished
     call Read_sector
-    jmp looper
+    call Validate_sector
+    je .found_volume
+    lea si, [error_message3]
+.found_volume:
+    lea si, [filesystel_validation_string]
+    ;just borrow .errornous for now
 .errornous:
     call Print_string ;si should already be loaded
 looper:
@@ -133,7 +146,6 @@ test_message1: db "tester imager", 0
 kernel_file_name db "STICK.BIN", 0 
 boot_setting_file_name db ""
 filesystel_validation_string db "CD001", 0
-test_buffer: times 6 db 0
 
 disk_packet_struct:
     db 0x10
