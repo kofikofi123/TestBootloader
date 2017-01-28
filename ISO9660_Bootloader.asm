@@ -84,6 +84,7 @@ Validate_volume_id:
     push bx 
     mov bl, byte [disk_buffer]
     cmp al, bl 
+    pop bx
     ret
 
 Main:
@@ -117,23 +118,33 @@ Main:
 
 .setup_reading:
     mov si, 16
-    ;init data packet
+    push si ;may not be needed
+.start_reading:
     mov ax, 1 
     mov bx, 0
     lea di, [disk_buffer]
-.start_reading:
     ;label not finished
     call Read_sector
     call Validate_sector
-    je .found_volume
+    je .found_begin
     lea si, [error_message3]
-.found_volume:
-    lea si, [filesystel_validation_string]
-    ;just borrow .errornous for now
+    jmp .errornous
+.found_begin:
+    pop si ;may not be needed
+    mov al, 1 
+    call Validate_volume_id 
+    je .try_read_file
+    lea si, [kernel_file_name]
+.try_read_file:
+    lea si, [test_message1]
+    call Print_string
+    jmp looper
 .errornous:
     call Print_string ;si should already be loaded
 looper:
-    jmp looper
+    cli
+.lop:
+    jmp .lop
 
 ;variables
 bdrive: db 0
